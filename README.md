@@ -6,7 +6,7 @@ As atividades são desenvolvidas em **Python**. Este README será atualizado con
 
 ---
 
-# Atividade 1 — Arrays e Biblioteca matemática
+# Atividade 1 — Array: Biblioteca matemática
 
 **Arquivo:** `E1_bibliotecasMath.py`
 
