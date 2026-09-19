@@ -6,9 +6,6 @@ def inicializar_array():
 def inserir(array, valor):
     array.append(valor)
 
-def imprimir(array):
-    print(array)
-
 def buscar(array, valor):
     for i in range(len(array)):
         if array[i] == valor:
