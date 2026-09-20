@@ -330,69 +330,21 @@ Pilha
 └── quantidade
 ```
 
-Os nós são ligados pela referência `proximo`.
-
-Não é utilizada uma lista pronta do Python para armazenar os discos.
-
 ---
 
 ## Operações da pilha
 
-As operações implementadas são:
-
-### `inicializar_pilha`
-
-Cria uma nova pilha vazia.
-
-```text
-topo = None
-quantidade = 0
-```
-
-### `empilhar`
-
-Adiciona um novo disco no topo da pilha.
-
-O novo nó passa a apontar para o antigo topo.
-
-### `desempilhar`
-
-Remove o disco localizado no topo da pilha e retorna seu valor.
-
-A referência `topo` passa a apontar para o próximo nó.
-
-### `topo`
-
-Retorna o disco localizado no topo da pilha sem removê-lo.
-
-### `imprimir`
-
-Percorre os nós da pilha e mostra os discos armazenados.
-
----
-
-## Funcionalidades implementadas
-
-O jogo permite:
-
-* iniciar uma nova partida;
-* visualizar as três torres;
-* selecionar uma torre de origem;
-* selecionar uma torre de destino;
-* realizar movimentos válidos;
-* impedir movimentos inválidos;
-* visualizar o número de movimentos;
-* reiniciar a partida;
-* encerrar o jogo;
-* identificar quando o jogador venceu.
+* `inicializar_pilha`: cria uma pilha vazia;
+* `empilhar`: adiciona um disco ao topo;
+* `desempilhar`: remove o disco do topo;
+* `topo`: consulta o disco do topo;
+* `imprimir`: exibe os discos da pilha.
 
 ---
 
 ## Como executar
 
-É necessário utilizar **Python 3.10 ou superior**, pois o programa utiliza `match/case`.
-
-No terminal:
+É necessário utilizar **Python 3.10 ou superior**.
 
 ```bash
 python E3_jogoTorreHanoi.py
@@ -406,7 +358,7 @@ python3 E3_jogoTorreHanoi.py
 
 ---
 
-## Menu do jogo
+## Exemplo de execução
 
 ```text
 ================================
@@ -426,25 +378,11 @@ Movimentos realizados: 0
 ------------------------
 ```
 
----
-
-## Exemplo de execução
-
-Estado inicial:
-
-```text
-Torre 1: [ 1 2 3 4 ]
-Torre 2: [ vazia ]
-Torre 3: [ vazia ]
-```
-
 Movimento:
 
 ```text
-Escolha uma opcao: 1
-
-Torre de origem (1, 2 ou 3): 1
-Torre de destino (1, 2 ou 3): 2
+Torre de origem: 1
+Torre de destino: 2
 ```
 
 Resultado:
@@ -454,117 +392,26 @@ Movimento realizado: disco 1
 Torre 1 -> Torre 2
 ```
 
-Novo estado:
-
-```text
-Torre 1: [ 2 3 4 ]
-Torre 2: [ 1 ]
-Torre 3: [ vazia ]
-```
-
----
-
-## Exemplo de movimento inválido
-
-Tentativa de colocar um disco maior sobre um menor:
-
-```text
-Torre de origem (1, 2 ou 3): 1
-Torre de destino (1, 2 ou 3): 2
-```
-
-Caso o disco da Torre 1 seja maior que o disco localizado no topo da Torre 2:
-
-```text
-[ERRO] Um disco maior nao pode ficar sobre um menor!
-```
-
-O movimento não é realizado e o contador permanece com o mesmo valor.
-
----
-
-## Condição de vitória
-
-O jogador vence quando os quatro discos estiverem na Torre 3.
-
-Estado final:
-
-```text
-Torre 1: [ vazia ]
-Torre 2: [ vazia ]
-Torre 3: [ 1 2 3 4 ]
-```
-
-Saída:
-
-```text
-********************************
-          VOCE VENCEU!
-********************************
-Total de movimentos: 15
-********************************
-```
-
-Para quatro discos, a solução mínima utiliza **15 movimentos**.
-
 ---
 
 ## Testes realizados
 
-| Nº | Teste                   | Resultado                                                            |
-| -- | ----------------------- | -------------------------------------------------------------------- |
-| 1  | Inicializar pilha       | Pilha criada com `topo = None` e quantidade `0`                      |
-| 2  | Empilhar disco          | Disco passa a ocupar o topo                                          |
-| 3  | Desempilhar disco       | Disco do topo é removido                                             |
-| 4  | Consultar topo          | Retorna o disco do topo sem removê-lo                                |
-| 5  | Mostrar torres          | Exibe corretamente os discos das três pilhas                         |
-| 6  | Movimento válido        | Disco é transferido entre as torres                                  |
-| 7  | Origem vazia            | Movimento é bloqueado                                                |
-| 8  | Disco maior sobre menor | Movimento é bloqueado                                                |
-| 9  | Origem igual ao destino | Movimento é bloqueado                                                |
-| 10 | Torre inválida          | Programa apresenta mensagem de erro                                  |
-| 11 | Contador de movimentos  | É incrementado apenas em movimentos válidos                          |
-| 12 | Reiniciar partida       | Torres retornam ao estado inicial e contador volta para `0`          |
-| 13 | Encerrar jogo           | Programa finaliza corretamente                                       |
-| 14 | Vitória                 | Ao colocar os quatro discos na Torre 3, o programa informa a vitória |
-| 15 | Solução mínima          | Jogo pode ser concluído em `15` movimentos                           |
+| Nº | Teste                   | Resultado                                  |
+| -- | ----------------------- | ------------------------------------------ |
+| 1  | Inicializar pilha       | Pilha vazia criada corretamente            |
+| 2  | Empilhar disco          | Disco passa a ocupar o topo                |
+| 3  | Desempilhar disco       | Disco do topo é removido                   |
+| 4  | Consultar topo          | Retorna o disco sem removê-lo              |
+| 5  | Movimento válido        | Disco é transferido                        |
+| 6  | Origem vazia            | Movimento bloqueado                        |
+| 7  | Disco maior sobre menor | Movimento bloqueado                        |
+| 8  | Origem igual ao destino | Movimento bloqueado                        |
+| 9  | Contador                | Incrementado apenas em movimentos válidos  |
+| 10 | Reiniciar partida       | Torres e contador retornam ao início       |
+| 11 | Vitória                 | Jogo reconhece os quatro discos na Torre 3 |
+| 12 | Solução mínima          | Vitória possível em `15` movimentos        |
 
 Todos os testes apresentaram os resultados esperados.
-
----
-
-## Sequência utilizada para teste de vitória
-
-Uma sequência válida para terminar o jogo com quatro discos é:
-
-```text
-1 -> 2
-1 -> 3
-2 -> 3
-1 -> 2
-3 -> 1
-3 -> 2
-1 -> 2
-1 -> 3
-2 -> 3
-2 -> 1
-3 -> 1
-2 -> 3
-1 -> 2
-1 -> 3
-2 -> 3
-```
-
-Resultado final:
-
-```text
-Torre 1: [ vazia ]
-Torre 2: [ vazia ]
-Torre 3: [ 1 2 3 4 ]
-
-VOCE VENCEU!
-Total de movimentos: 15
-```
 
 ---
 
@@ -576,7 +423,7 @@ Total de movimentos: 15
 
 Nesta atividade foi desenvolvido um **Jogo Genius** utilizando uma fila dinâmica implementada com nós encadeados.
 
-A cada rodada, uma nova cor é adicionada à sequência. O jogador deve memorizar e informar todas as cores na mesma ordem apresentada.
+A cada rodada, uma nova cor é adicionada à sequência. O jogador deve repetir todas as cores na mesma ordem apresentada.
 
 As cores utilizadas são:
 
@@ -585,29 +432,17 @@ As cores utilizadas são:
 * AZUL;
 * AMARELO.
 
-A sequência é armazenada utilizando uma fila, seguindo o princípio **FIFO (First In, First Out)**.
-
-Exemplo:
-
-```text
-VERDE -> AZUL -> VERMELHO
-```
-
-O primeiro elemento inserido permanece no início da sequência.
+A sequência segue o princípio **FIFO (First In, First Out)**.
 
 ---
 
 ## Estruturas utilizadas
-
-Cada cor é armazenada em um nó:
 
 ```text
 No
 ├── cor
 └── proximo
 ```
-
-A fila possui:
 
 ```text
 Fila
@@ -616,90 +451,21 @@ Fila
 └── quantidade
 ```
 
-O encadeamento ocorre por meio da referência `proximo`.
-
-Não são utilizadas estruturas prontas como `list` ou `deque` para armazenar a sequência principal do jogo.
-
 ---
 
 ## Operações da fila
 
-### `inicializar_fila`
-
-Cria uma fila vazia.
-
-```text
-inicio = None
-fim = None
-quantidade = 0
-```
-
-### `enfileirar`
-
-Adiciona uma nova cor no final da fila.
-
-Exemplo:
-
-```text
-VERDE -> AZUL
-```
-
-Após adicionar VERMELHO:
-
-```text
-VERDE -> AZUL -> VERMELHO
-```
-
-### `desenfileirar`
-
-Remove e retorna a cor localizada no início da fila.
-
-Exemplo:
-
-```text
-VERDE -> AZUL -> VERMELHO
-```
-
-Após remover:
-
-```text
-AZUL -> VERMELHO
-```
-
-### `frente`
-
-Retorna a primeira cor da fila sem removê-la.
-
-### `imprimir`
-
-Percorre a fila do início até o fim e exibe a sequência armazenada.
-
----
-
-## Funcionalidades implementadas
-
-O jogo permite:
-
-* iniciar uma partida;
-* gerar cores aleatoriamente;
-* adicionar uma nova cor a cada rodada;
-* visualizar a sequência atual;
-* informar as cores na ordem apresentada;
-* avançar de rodada ao acertar;
-* visualizar a pontuação;
-* detectar uma resposta incorreta;
-* reiniciar a partida;
-* encerrar o jogo.
-
-A pontuação aumenta em `1` sempre que o jogador acerta uma sequência completa.
+* `inicializar_fila`: cria uma fila vazia;
+* `enfileirar`: adiciona uma cor ao final;
+* `desenfileirar`: remove a primeira cor;
+* `frente`: consulta a primeira cor;
+* `imprimir`: exibe a sequência.
 
 ---
 
 ## Como executar
 
-É necessário possuir **Python 3.10 ou superior**, pois o programa utiliza `match/case`.
-
-No terminal:
+É necessário possuir **Python 3.10 ou superior**.
 
 ```bash
 python E4_jogoGenius.py
@@ -710,74 +476,6 @@ ou:
 ```bash
 python3 E4_jogoGenius.py
 ```
-
----
-
-## Menu do jogo
-
-Ao iniciar o programa:
-
-```text
-================================
-          JOGO GENIUS
-================================
-Pontuacao: 0
-
---------- MENU ---------
-1 - Iniciar / Continuar
-2 - Reiniciar partida
-0 - Sair
-------------------------
-```
-
----
-
-## Como jogar
-
-Selecione:
-
-```text
-1 - Iniciar / Continuar
-```
-
-Na primeira rodada será apresentada uma cor:
-
-```text
-================================
-           RODADA 1
-================================
-
-Memorize a sequencia:
-VERDE
-```
-
-O jogador deverá informar:
-
-```text
-Cor: verde
-```
-
-Se acertar:
-
-```text
-Voce acertou!
-Pontuacao: 1
-```
-
-Na rodada seguinte, uma nova cor será adicionada:
-
-```text
-VERDE -> AZUL
-```
-
-O jogador deverá digitar:
-
-```text
-Cor: verde
-Cor: azul
-```
-
-O processo continua enquanto todas as respostas estiverem corretas.
 
 ---
 
@@ -801,14 +499,8 @@ Pontuacao: 1
 Próxima rodada:
 
 ```text
-================================
-           RODADA 2
-================================
-
-Memorize a sequencia:
 VERDE -> AZUL
 
-Repita a sequencia:
 Cor: verde
 Cor: azul
 
@@ -818,53 +510,266 @@ Pontuacao: 2
 
 ---
 
-## Exemplo de resposta incorreta
+## Testes realizados
 
-Sequência apresentada:
+| Nº | Teste                   | Resultado                          |
+| -- | ----------------------- | ---------------------------------- |
+| 1  | Inicializar fila        | Fila vazia criada corretamente     |
+| 2  | Enfileirar primeira cor | `inicio` e `fim` apontam para o nó |
+| 3  | Enfileirar várias cores | Ordem de inserção é mantida        |
+| 4  | Consultar frente        | Retorna a primeira cor             |
+| 5  | Desenfileirar           | Remove a primeira cor              |
+| 6  | Fila vazia              | Retorna `None`                     |
+| 7  | Imprimir sequência      | Exibe cores na ordem correta       |
+| 8  | Adicionar cor           | Nova cor é adicionada ao final     |
+| 9  | Acertar sequência       | Avança para próxima rodada         |
+| 10 | Pontuação               | Aumenta após acerto                |
+| 11 | Errar sequência         | Partida é encerrada                |
+| 12 | Reiniciar               | Fila e pontuação voltam ao início  |
+| 13 | Encerrar                | Programa finaliza corretamente     |
+
+Todos os testes apresentaram os resultados esperados.
+
+---
+
+# Atividade 5 — Heap: Fila de Prioridade de Pedidos
+
+**Arquivo:** `E5_filaPrioridadePedidos.py`
+
+## Descrição
+
+Nesta atividade foi desenvolvido um sistema de gerenciamento de pedidos utilizando um **Max-Heap**.
+
+Cada pedido possui:
+
+* ID;
+* descrição;
+* prioridade.
+
+Quanto maior o valor da prioridade, maior a prioridade do pedido.
+
+O Max-Heap mantém o pedido de maior prioridade na primeira posição do vetor.
+
+Exemplo:
 
 ```text
-VERDE -> AZUL -> VERMELHO
+[8, 5, 3, 2, 1]
 ```
 
-Resposta:
+Representação:
 
 ```text
-Cor: verde
-Cor: amarelo
+        8
+       / \
+      5   3
+     / \
+    2   1
+```
+
+O Heap é armazenado utilizando um vetor e não utiliza o módulo `heapq`.
+
+---
+
+## Estruturas utilizadas
+
+Cada pedido possui:
+
+```text
+Pedido
+├── id
+├── descricao
+└── prioridade
+```
+
+O Heap possui:
+
+```text
+Heap
+├── dados
+├── tamanho
+└── capacidade
+```
+
+O vetor possui capacidade inicial igual a `5`.
+
+Quando o vetor fica cheio, sua capacidade é duplicada automaticamente.
+
+---
+
+## Relações entre os índices
+
+Para um elemento localizado na posição `i`:
+
+```text
+pai      = (i - 1) // 2
+esquerdo = 2 * i + 1
+direito  = 2 * i + 2
+```
+
+Essas relações permitem representar a árvore do Heap dentro do vetor.
+
+---
+
+## Operações do Heap
+
+### `inicializar_heap`
+
+Cria um Heap vazio com capacidade inicial igual a `5`.
+
+### `inserir`
+
+Insere um novo pedido no final do vetor.
+
+Após a inserção, o pedido é comparado com seu pai e realiza trocas enquanto possuir prioridade maior.
+
+Dessa forma, o Heap é reorganizado automaticamente após cada inserção.
+
+### `remover`
+
+Remove e retorna o pedido localizado na raiz do Heap, que sempre corresponde ao pedido de maior prioridade.
+
+Após a remoção, o último pedido ocupa a raiz e o Heap é reorganizado automaticamente.
+
+### `max_heapfy`
+
+Compara um elemento com seus filhos esquerdo e direito e realiza as trocas necessárias para restaurar a propriedade do Max-Heap.
+
+### `construir`
+
+Percorre os elementos internos do vetor e utiliza `max_heapfy` para organizar os pedidos como um Max-Heap.
+
+### `print_heap`
+
+Exibe os pedidos atualmente armazenados no Heap.
+
+---
+
+## Como executar
+
+É necessário possuir **Python 3.10 ou superior**, pois o programa utiliza `match/case`.
+
+No terminal:
+
+```bash
+python E5_filaPrioridadePedidos.py
+```
+
+ou:
+
+```bash
+python3 E5_filaPrioridadePedidos.py
+```
+
+---
+
+## Menu do programa
+
+```text
+===== SISTEMA DE PEDIDOS =====
+1 - Cadastrar pedido
+2 - Atender pedido
+3 - Exibir pedidos
+4 - Exibir quantidade de pedidos
+5 - Sair
+```
+
+---
+
+## Exemplo de execução
+
+Cadastro de pedidos:
+
+```text
+Escolha: 1
+ID: 101
+Descricao: Pedido de 10 produtos
+Prioridade: 2
+
+Escolha: 1
+ID: 102
+Descricao: Pedido de 5 produtos
+Prioridade: 5
+
+Escolha: 1
+ID: 103
+Descricao: Pedido de 20 produtos
+Prioridade: 3
+
+Escolha: 1
+ID: 104
+Descricao: Pedido urgente
+Prioridade: 8
+```
+
+Ao exibir os pedidos:
+
+```text
+Escolha: 3
+
+ID: 104 | Pedido urgente | Prioridade: 8
+ID: 102 | Pedido de 5 produtos | Prioridade: 5
+ID: 103 | Pedido de 20 produtos | Prioridade: 3
+ID: 101 | Pedido de 10 produtos | Prioridade: 2
+```
+
+O pedido de maior prioridade permanece na raiz do Heap.
+
+---
+
+## Atendimento de pedido
+
+Ao selecionar:
+
+```text
+Escolha: 2
 ```
 
 Resultado:
 
 ```text
-********************************
-           VOCE ERROU!
-********************************
-Pontuacao final: 2
-********************************
+Pedido atendido:
+ID: 104
+Descricao: Pedido urgente
+Prioridade: 8
 ```
 
-A partida é encerrada e a pontuação obtida é apresentada.
+Após a remoção, o Heap é reorganizado automaticamente e o próximo pedido de maior prioridade passa a ocupar a raiz.
+
+---
+
+## Aumento da capacidade
+
+O Heap inicia com capacidade para `5` pedidos.
+
+Caso essa capacidade seja atingida:
+
+```text
+5 -> 10 -> 20 -> 40
+```
+
+A capacidade do vetor é duplicada automaticamente, permitindo a inclusão de novos pedidos.
 
 ---
 
 ## Testes realizados
 
-| Nº | Teste                    | Resultado                                                      |
-| -- | ------------------------ | -------------------------------------------------------------- |
-| 1  | Inicializar fila         | Fila criada com `inicio = None`, `fim = None` e quantidade `0` |
-| 2  | Enfileirar primeira cor  | `inicio` e `fim` apontam para o novo nó                        |
-| 3  | Enfileirar várias cores  | Cores são armazenadas na ordem de inserção                     |
-| 4  | Consultar frente         | Retorna a primeira cor sem removê-la                           |
-| 5  | Desenfileirar            | Remove a primeira cor da fila                                  |
-| 6  | Desenfileirar fila vazia | Retorna `None`                                                 |
-| 7  | Imprimir sequência       | Exibe as cores na ordem correta                                |
-| 8  | Adicionar nova cor       | Uma nova cor aleatória é adicionada ao final                   |
-| 9  | Acertar sequência        | Jogador avança para a próxima rodada                           |
-| 10 | Pontuação                | Aumenta em `1` após cada rodada correta                        |
-| 11 | Errar uma cor            | Partida é encerrada e mostra a pontuação final                 |
-| 12 | Uso de letras minúsculas | Entrada é convertida para maiúsculas e aceita normalmente      |
-| 13 | Reiniciar partida        | Fila volta a ficar vazia e pontuação retorna para `0`          |
-| 14 | Encerrar jogo            | Programa é finalizado corretamente                             |
+| Nº | Teste                              | Resultado                                                       |
+| -- | ---------------------------------- | --------------------------------------------------------------- |
+| 1  | Inicializar Heap                   | Heap criado com tamanho `0` e capacidade `5`                    |
+| 2  | Inserir primeiro pedido            | Pedido ocupa a raiz                                             |
+| 3  | Inserir pedido de maior prioridade | Novo pedido sobe até a posição correta                          |
+| 4  | Inserir vários pedidos             | Propriedade do Max-Heap é mantida                               |
+| 5  | Remover pedido                     | Pedido de maior prioridade é removido                           |
+| 6  | Reorganizar após remoção           | Próximo maior pedido passa para a raiz                          |
+| 7  | Remover Heap vazio                 | Retorna `None`                                                  |
+| 8  | `max_heapfy`                       | Elementos são reorganizados corretamente                        |
+| 9  | Construir Heap                     | Vetor é reorganizado como Max-Heap                              |
+| 10 | Exibir pedidos                     | Pedidos armazenados são apresentados                            |
+| 11 | Verificar quantidade               | `tamanho` corresponde ao total de pedidos                       |
+| 12 | Aumentar capacidade                | Capacidade é duplicada ao preencher o vetor                     |
+| 13 | Continuar inserindo                | Novos pedidos podem ser cadastrados normalmente                 |
+| 14 | Atender todos os pedidos           | Pedidos são removidos do maior para o menor nível de prioridade |
+| 15 | Sair                               | Programa é encerrado corretamente                               |
 
 Todos os testes apresentaram os resultados esperados.
 
@@ -878,6 +783,7 @@ Todos os testes apresentaram os resultados esperados.
 ├── E2_playlist.py
 ├── E3_jogoTorreHanoi.py
 ├── E4_jogoGenius.py
+├── E5_filaPrioridadePedidos.py
 └── README.md
 ```
 
