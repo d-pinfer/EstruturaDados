@@ -775,6 +775,291 @@ Todos os testes apresentaram os resultados esperados.
 
 ---
 
+# Atividade 6 — Tabelas Hash
+
+**Arquivo:** `E6_tabelaHash.py`
+
+## Descrição
+
+Nesta atividade foi implementada uma **Tabela Hash** utilizando a função:
+
+```text
+h(k) = k mod 7
+```
+
+A tabela possui `7` posições e utiliza **encadeamento externo** para tratar colisões.
+
+O conjunto utilizado foi:
+
+```text
+{190, 322, 172, 89, 13, 4, 769, 61, 15, 76}
+```
+
+Quando dois ou mais valores resultam na mesma posição da função hash, eles são armazenados em nós encadeados.
+
+Exemplo:
+
+```text
+190 % 7 = 1
+15 % 7 = 1
+```
+
+Resultado:
+
+```text
+1 -> 190 -> 15
+```
+
+---
+
+## Estruturas utilizadas
+
+Cada elemento da tabela é armazenado em um nó:
+
+```text
+No
+├── valor
+└── proximo
+```
+
+A tabela Hash possui:
+
+```text
+Hash
+├── tabela
+└── quantidade
+```
+
+A tabela possui tamanho fixo igual a `7`.
+
+---
+
+## Função Hash
+
+A função utilizada é:
+
+```python
+def funcao_hash(valor):
+    return valor % TAMANHO
+```
+
+Como:
+
+```text
+TAMANHO = 7
+```
+
+a posição de cada valor é determinada pelo resto da divisão por `7`.
+
+| Valor |   Cálculo | Posição |
+| ----: | --------: | ------: |
+|   190 | `190 % 7` |       1 |
+|   322 | `322 % 7` |       0 |
+|   172 | `172 % 7` |       4 |
+|    89 |  `89 % 7` |       5 |
+|    13 |  `13 % 7` |       6 |
+|     4 |   `4 % 7` |       4 |
+|   769 | `769 % 7` |       6 |
+|    61 |  `61 % 7` |       5 |
+|    15 |  `15 % 7` |       1 |
+|    76 |  `76 % 7` |       6 |
+
+---
+
+## Tabela Hash resultante
+
+Após inserir todos os valores:
+
+```text
+0 -> 322
+1 -> 190 15
+2 ->
+3 ->
+4 -> 172 4
+5 -> 89 61
+6 -> 13 769 76
+```
+
+As posições `1`, `4`, `5` e `6` apresentam colisões, resolvidas por encadeamento externo.
+
+---
+
+## Operações implementadas
+
+### `funcao_hash`
+
+Calcula a posição do valor na tabela através da operação:
+
+```text
+valor % 7
+```
+
+### `inserir`
+
+Calcula a posição do valor e cria um novo nó.
+
+Caso a posição já possua elementos, o novo nó é colocado no final da lista encadeada.
+
+### `buscar`
+
+Calcula a posição do valor e percorre apenas os nós daquela posição até encontrar o elemento.
+
+Retorna `True` quando encontra e `False` quando não encontra.
+
+### `remover`
+
+Localiza o valor dentro da posição correspondente e ajusta o encadeamento para removê-lo.
+
+### `imprimir`
+
+Percorre todas as posições da tabela e mostra os valores armazenados.
+
+### `fator_carga`
+
+Calcula o fator de carga utilizando:
+
+```text
+quantidade de elementos / tamanho da tabela
+```
+
+---
+
+## Como executar
+
+No terminal:
+
+```bash
+python E6_tabelaHash.py
+```
+
+ou:
+
+```bash
+python3 E6_tabelaHash.py
+```
+
+---
+
+## Exemplo de execução
+
+Tabela inicial:
+
+```text
+--- TABELA HASH ---
+0 -> 322
+1 -> 190 15
+2 ->
+3 ->
+4 -> 172 4
+5 -> 89 61
+6 -> 13 769 76
+```
+
+Fator de carga:
+
+```text
+Fator de carga: 1.43
+```
+
+---
+
+## Exemplo de remoção
+
+O programa remove o valor `769`.
+
+Antes:
+
+```text
+6 -> 13 769 76
+```
+
+Depois:
+
+```text
+6 -> 13 76
+```
+
+Saída:
+
+```text
+Removendo 769...
+```
+
+A tabela passa a ser:
+
+```text
+0 -> 322
+1 -> 190 15
+2 ->
+3 ->
+4 -> 172 4
+5 -> 89 61
+6 -> 13 76
+```
+
+---
+
+## Exemplo de inserção
+
+Após a remoção, o programa insere o valor `67`.
+
+A posição é calculada por:
+
+```text
+67 % 7 = 4
+```
+
+Como já existem elementos na posição `4`, ocorre uma colisão.
+
+Antes:
+
+```text
+4 -> 172 4
+```
+
+Depois:
+
+```text
+4 -> 172 4 67
+```
+
+---
+
+## Fator de carga
+
+Antes das operações de remoção e nova inserção existem `10` elementos em uma tabela de tamanho `7`.
+
+```text
+Fator de carga = 10 / 7
+Fator de carga = 1.43
+```
+
+O fator de carga pode ser maior que `1` porque o tratamento de colisões é realizado por encadeamento externo.
+
+---
+
+## Testes realizados
+
+| Nº | Teste                            | Resultado                                   |
+| -- | -------------------------------- | ------------------------------------------- |
+| 1  | Criar tabela Hash                | Tabela criada com `7` posições              |
+| 2  | Calcular `190 % 7`               | Retorna posição `1`                         |
+| 3  | Inserir primeiro valor           | Valor armazenado na posição correta         |
+| 4  | Inserir vários valores           | Valores distribuídos pela função Hash       |
+| 5  | Colisão entre `190` e `15`       | Ambos ficam encadeados na posição `1`       |
+| 6  | Colisão na posição `6`           | `13`, `769` e `76` ficam encadeados         |
+| 7  | Buscar valor existente           | Retorna `True`                              |
+| 8  | Buscar valor inexistente         | Retorna `False`                             |
+| 9  | Remover `769`                    | Valor é retirado da posição `6`             |
+| 10 | Manter encadeamento após remoção | Posição `6` passa a conter `13 76`          |
+| 11 | Inserir `67`                     | Valor é inserido na posição `4`             |
+| 12 | Calcular fator de carga          | Resultado inicial igual a `1.43`            |
+| 13 | Imprimir tabela                  | Todas as posições são exibidas corretamente |
+
+Os testes apresentaram os resultados esperados.
+
+---
+
 # Estrutura do repositório
 
 ```text
@@ -784,7 +1069,9 @@ Todos os testes apresentaram os resultados esperados.
 ├── E3_jogoTorreHanoi.py
 ├── E4_jogoGenius.py
 ├── E5_filaPrioridadePedidos.py
+├── E6_tabelaHash.py
 └── README.md
 ```
 
 As próximas atividades serão adicionadas neste mesmo repositório e documentadas neste README.
+
