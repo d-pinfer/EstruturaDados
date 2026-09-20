@@ -568,6 +568,308 @@ Total de movimentos: 15
 
 ---
 
+# Atividade 4 — Fila: Jogo Genius
+
+**Arquivo:** `E4_jogoGenius.py`
+
+## Descrição
+
+Nesta atividade foi desenvolvido um **Jogo Genius** utilizando uma fila dinâmica implementada com nós encadeados.
+
+A cada rodada, uma nova cor é adicionada à sequência. O jogador deve memorizar e informar todas as cores na mesma ordem apresentada.
+
+As cores utilizadas são:
+
+* VERDE;
+* VERMELHO;
+* AZUL;
+* AMARELO.
+
+A sequência é armazenada utilizando uma fila, seguindo o princípio **FIFO (First In, First Out)**.
+
+Exemplo:
+
+```text
+VERDE -> AZUL -> VERMELHO
+```
+
+O primeiro elemento inserido permanece no início da sequência.
+
+---
+
+## Estruturas utilizadas
+
+Cada cor é armazenada em um nó:
+
+```text
+No
+├── cor
+└── proximo
+```
+
+A fila possui:
+
+```text
+Fila
+├── inicio
+├── fim
+└── quantidade
+```
+
+O encadeamento ocorre por meio da referência `proximo`.
+
+Não são utilizadas estruturas prontas como `list` ou `deque` para armazenar a sequência principal do jogo.
+
+---
+
+## Operações da fila
+
+### `inicializar_fila`
+
+Cria uma fila vazia.
+
+```text
+inicio = None
+fim = None
+quantidade = 0
+```
+
+### `enfileirar`
+
+Adiciona uma nova cor no final da fila.
+
+Exemplo:
+
+```text
+VERDE -> AZUL
+```
+
+Após adicionar VERMELHO:
+
+```text
+VERDE -> AZUL -> VERMELHO
+```
+
+### `desenfileirar`
+
+Remove e retorna a cor localizada no início da fila.
+
+Exemplo:
+
+```text
+VERDE -> AZUL -> VERMELHO
+```
+
+Após remover:
+
+```text
+AZUL -> VERMELHO
+```
+
+### `frente`
+
+Retorna a primeira cor da fila sem removê-la.
+
+### `imprimir`
+
+Percorre a fila do início até o fim e exibe a sequência armazenada.
+
+---
+
+## Funcionalidades implementadas
+
+O jogo permite:
+
+* iniciar uma partida;
+* gerar cores aleatoriamente;
+* adicionar uma nova cor a cada rodada;
+* visualizar a sequência atual;
+* informar as cores na ordem apresentada;
+* avançar de rodada ao acertar;
+* visualizar a pontuação;
+* detectar uma resposta incorreta;
+* reiniciar a partida;
+* encerrar o jogo.
+
+A pontuação aumenta em `1` sempre que o jogador acerta uma sequência completa.
+
+---
+
+## Como executar
+
+É necessário possuir **Python 3.10 ou superior**, pois o programa utiliza `match/case`.
+
+No terminal:
+
+```bash
+python E4_jogoGenius.py
+```
+
+ou:
+
+```bash
+python3 E4_jogoGenius.py
+```
+
+---
+
+## Menu do jogo
+
+Ao iniciar o programa:
+
+```text
+================================
+          JOGO GENIUS
+================================
+Pontuacao: 0
+
+--------- MENU ---------
+1 - Iniciar / Continuar
+2 - Reiniciar partida
+0 - Sair
+------------------------
+```
+
+---
+
+## Como jogar
+
+Selecione:
+
+```text
+1 - Iniciar / Continuar
+```
+
+Na primeira rodada será apresentada uma cor:
+
+```text
+================================
+           RODADA 1
+================================
+
+Memorize a sequencia:
+VERDE
+```
+
+O jogador deverá informar:
+
+```text
+Cor: verde
+```
+
+Se acertar:
+
+```text
+Voce acertou!
+Pontuacao: 1
+```
+
+Na rodada seguinte, uma nova cor será adicionada:
+
+```text
+VERDE -> AZUL
+```
+
+O jogador deverá digitar:
+
+```text
+Cor: verde
+Cor: azul
+```
+
+O processo continua enquanto todas as respostas estiverem corretas.
+
+---
+
+## Exemplo de execução
+
+```text
+================================
+           RODADA 1
+================================
+
+Memorize a sequencia:
+VERDE
+
+Repita a sequencia:
+Cor: verde
+
+Voce acertou!
+Pontuacao: 1
+```
+
+Próxima rodada:
+
+```text
+================================
+           RODADA 2
+================================
+
+Memorize a sequencia:
+VERDE -> AZUL
+
+Repita a sequencia:
+Cor: verde
+Cor: azul
+
+Voce acertou!
+Pontuacao: 2
+```
+
+---
+
+## Exemplo de resposta incorreta
+
+Sequência apresentada:
+
+```text
+VERDE -> AZUL -> VERMELHO
+```
+
+Resposta:
+
+```text
+Cor: verde
+Cor: amarelo
+```
+
+Resultado:
+
+```text
+********************************
+           VOCE ERROU!
+********************************
+Pontuacao final: 2
+********************************
+```
+
+A partida é encerrada e a pontuação obtida é apresentada.
+
+---
+
+## Testes realizados
+
+| Nº | Teste                    | Resultado                                                      |
+| -- | ------------------------ | -------------------------------------------------------------- |
+| 1  | Inicializar fila         | Fila criada com `inicio = None`, `fim = None` e quantidade `0` |
+| 2  | Enfileirar primeira cor  | `inicio` e `fim` apontam para o novo nó                        |
+| 3  | Enfileirar várias cores  | Cores são armazenadas na ordem de inserção                     |
+| 4  | Consultar frente         | Retorna a primeira cor sem removê-la                           |
+| 5  | Desenfileirar            | Remove a primeira cor da fila                                  |
+| 6  | Desenfileirar fila vazia | Retorna `None`                                                 |
+| 7  | Imprimir sequência       | Exibe as cores na ordem correta                                |
+| 8  | Adicionar nova cor       | Uma nova cor aleatória é adicionada ao final                   |
+| 9  | Acertar sequência        | Jogador avança para a próxima rodada                           |
+| 10 | Pontuação                | Aumenta em `1` após cada rodada correta                        |
+| 11 | Errar uma cor            | Partida é encerrada e mostra a pontuação final                 |
+| 12 | Uso de letras minúsculas | Entrada é convertida para maiúsculas e aceita normalmente      |
+| 13 | Reiniciar partida        | Fila volta a ficar vazia e pontuação retorna para `0`          |
+| 14 | Encerrar jogo            | Programa é finalizado corretamente                             |
+
+Todos os testes apresentaram os resultados esperados.
+
+---
+
 # Estrutura do repositório
 
 ```text
@@ -575,8 +877,8 @@ Total de movimentos: 15
 ├── E1_bibliotecasMath.py
 ├── E2_playlist.py
 ├── E3_jogoTorreHanoi.py
+├── E4_jogoGenius.py
 └── README.md
 ```
 
 As próximas atividades serão adicionadas neste mesmo repositório e documentadas neste README.
-
