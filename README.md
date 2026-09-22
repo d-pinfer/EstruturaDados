@@ -4,7 +4,22 @@ Repositório destinado às atividades práticas da disciplina de Estruturas de D
 
 As atividades são desenvolvidas em **Python**. Este README será atualizado conforme novas atividades forem adicionadas ao repositório.
 
+## 📚 Índice de Atividades
+
+| Atividade | Estrutura / Tema | Arquivo | Acesso rápido |
+| :---: | :--- | :--- | :---: |
+| **1** | Array — Biblioteca matemática | `E1_bibliotecasMath.py` | [Ir para a atividade](#atividade-1) |
+| **2** | Lista Encadeada — Playlist | `E2_playlist.py` | [Ir para a atividade](#atividade-2) |
+| **3** | Pilha — Jogo Torre de Hanói | `E3_jogoTorreHanoi.py` | [Ir para a atividade](#atividade-3) |
+| **4** | Fila — Jogo Genius | `E4_jogoGenius.py` | [Ir para a atividade](#atividade-4) |
+| **5** | Heap — Fila de Prioridade de Pedidos | `E5_filaPrioridadePedidos.py` | [Ir para a atividade](#atividade-5) |
+| **6** | Tabela Hash | `E6_tabelaHash.py` | [Ir para a atividade](#atividade-6) |
+
+> Novas atividades serão adicionadas a este índice conforme o repositório for atualizado.
+
 ---
+
+<a id="atividade-1"></a>
 
 # Atividade 1 — Array: Biblioteca matemática
 
@@ -104,6 +119,8 @@ Similaridade: 0.9746
 Os testes apresentaram os resultados esperados.
 
 ---
+
+<a id="atividade-2"></a>
 
 # Atividade 2 — Lista Encadeada: Playlist
 
@@ -284,6 +301,8 @@ Os testes apresentaram os resultados esperados.
 
 ---
 
+<a id="atividade-3"></a>
+
 # Atividade 3 — Pilha: Jogo Torre de Hanói
 
 **Arquivo:** `E3_jogoTorreHanoi.py`
@@ -415,6 +434,8 @@ Todos os testes apresentaram os resultados esperados.
 
 ---
 
+<a id="atividade-4"></a>
+
 # Atividade 4 — Fila: Jogo Genius
 
 **Arquivo:** `E4_jogoGenius.py`
@@ -531,6 +552,8 @@ Pontuacao: 2
 Todos os testes apresentaram os resultados esperados.
 
 ---
+
+<a id="atividade-5"></a>
 
 # Atividade 5 — Heap: Fila de Prioridade de Pedidos
 
@@ -774,6 +797,8 @@ A capacidade do vetor é duplicada automaticamente, permitindo a inclusão de no
 Todos os testes apresentaram os resultados esperados.
 
 ---
+
+<a id="atividade-6"></a>
 
 # Atividade 6 — Tabelas Hash
 
